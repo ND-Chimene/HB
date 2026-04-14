@@ -423,8 +423,7 @@ ul {
 
   #scroll-hint {
     left: 50%;
-    bottom: 15%;
-    top: auto;
+    top: 7em;
     transform: translateX(-50%);
   }
 }
