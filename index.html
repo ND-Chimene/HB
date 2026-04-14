@@ -17,16 +17,10 @@
 
   <div id="scene">
 
-    <!-- STRIP DE PHOTOS -->
+    <!-- STRIP DE PHOTOS : une seule image -->
     <div id="strip">
-      <div class="photo-block b1" data-num="01">
-        <img src="dark_70.jpeg" alt="Photo 1" />
-      </div>
-      <div class="photo-block b2" data-num="02">
-        <img src="img.jpeg" alt="Photo 2" />
-      </div>
-      <div class="photo-block b3" data-num="03">
-        <img src="light_70.jpeg" alt="Photo 3" />
+      <div class="photo-block" data-num="01">
+        <img src="light_70.jpeg" alt="Photo" />
       </div>
     </div>
 
@@ -35,7 +29,7 @@
 
       <!-- SLIDE 1 -->
       <div class="text-slide below" data-index="0">
-        <p class="slide-index">01 / 03</p>
+        <p class="slide-index">01 / 04</p>
         <h2 class="slide-title">70 ans, Félix, 30 mai 2026<br>60 rue Saint-Honoré, 93000 Bobigny</h2>
         <p class="slide-body">
           À l'occasion de ses 70 ans, nous souhaitons célébrer Felix MFOU'OU comme il se doit.
@@ -44,7 +38,7 @@
 
       <!-- SLIDE 2 -->
       <div class="text-slide below" data-index="1">
-        <p class="slide-index">02 / 03</p>
+        <p class="slide-index">02 / 04</p>
         <h2 class="slide-title">Idée de cadeau</h2>
         <p class="slide-body">
           Pour celles et ceux qui le désirent, une cagnotte a été mise en place afin de contribuer à un cadeau commun,
@@ -70,7 +64,7 @@
 
       <!-- SLIDE 3 -->
       <div class="text-slide below" data-index="2">
-        <p class="slide-index">03 / 03</p>
+        <p class="slide-index">03 / 04</p>
         <h2 class="slide-title">Programme de la célébration</h2>
         <p class="pinyon-script">Dress code : Chic en bleu / blanc</p>
         <div class="program slide-body">
@@ -79,8 +73,7 @@
             <span>🔷<div class="line"></div></span>
             <div class="description">
               <p class="pinyon-script">Cocktail</p>
-              <p class="slide-body">Un moment pour se retrouver autour d'un verre, bercé par des sonorités
-                traditionnelles.</p>
+              <p class="slide-body">Un moment pour se retrouver autour d'un verre, bercé par des sonorités traditionnelles.</p>
             </div>
           </div>
           <div class="program-item">
@@ -96,8 +89,7 @@
             <span>🔷<div class="line"></div></span>
             <div class="description">
               <p class="pinyon-script">Soirée Dansante</p>
-              <p class="slide-body">La soirée se poursuit sur la piste de danse, tous réunis autour du patriarche dans
-                une ambiance chaleureuse.</p>
+              <p class="slide-body">La soirée se poursuit sur la piste de danse, tous réunis autour du patriarche dans une ambiance chaleureuse.</p>
             </div>
           </div>
           <div class="program-item">
@@ -108,10 +100,14 @@
             </div>
           </div>
         </div>
-        <p class="slide-body text-center">
-          <span class="pinyon-script">Accès</span><br>
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="text-slide below" data-index="3">
+        <p class="slide-index">04 / 04</p>
+        <h2 class="slide-title">Accès</h2>
+        <p class="slide-body">
           Ligne 7 — Fort d'Aubervilliers + Bus 236 — Division Leclerc<br>
-          ou<br>
           Ligne 5 — Hoche + Bus 151 — Chemin des Vignes<br>
           <span class="bold-text">Pas de parking sur place — stationnement possible à proximité</span>
         </p>
@@ -125,6 +121,7 @@
         <div class="scroll-dot"></div>
         <div class="scroll-dot"></div>
         <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
       </div>
       <span>scroll</span>
     </div>
@@ -134,17 +131,18 @@
       <div class="prog-dot" data-dot="0"></div>
       <div class="prog-dot" data-dot="1"></div>
       <div class="prog-dot" data-dot="2"></div>
+      <div class="prog-dot" data-dot="3"></div>
     </div>
 
   </div>
 
   <script>
-    const strip = document.getElementById('strip');
-    const panel = document.getElementById('text-panel');
-    const scene = document.getElementById('scene');
-    const hint = document.getElementById('scroll-hint');
+    const strip    = document.getElementById('strip');
+    const panel    = document.getElementById('text-panel');
+    const scene    = document.getElementById('scene');
+    const hint     = document.getElementById('scroll-hint');
     const progress = document.getElementById('progress');
-    const slides = Array.from(document.querySelectorAll('.text-slide'));
+    const slides   = Array.from(document.querySelectorAll('.text-slide'));
     const progDots = Array.from(document.querySelectorAll('.prog-dot'));
     const hintDots = Array.from(document.querySelectorAll('.scroll-dot'));
 
@@ -154,127 +152,100 @@
     const isMobile = () => window.innerWidth <= 1000;
     const isTablet = () => window.innerWidth >= 1001 && window.innerWidth < 1280;
 
-    /* ── POSITION STRIP ── */
+    /* ── POSITION FINALE DU STRIP (1 seul bloc) ── */
     function getStripLeft() {
       const sceneW = scene.offsetWidth;
-      const bw = strip.querySelector('.photo-block').offsetWidth;
-      const gap = 0;
-
-      if (isMobile()) return 0;
+      const bw     = strip.querySelector('.photo-block').offsetWidth;
 
       if (isTablet()) {
-        const textW = sceneW * 0.60;
+        const textW = sceneW * 0.58;
         const leftW = sceneW - textW;
-        return leftW / 2 - (2 * bw + 2 * gap + bw / 2);
+        return leftW / 2 - bw / 2;
       }
 
+      // Desktop >= 1280
       const textW = sceneW * 0.72;
       const leftW = sceneW - textW;
-      return leftW / 2 - (2 * bw + 2 * gap + bw / 2);
+      return leftW / 2 - bw / 2;
     }
 
-    /* ── SLIDES ── */
+    /* ── AFFICHER UNE SLIDE ── */
     function showSlide(idx) {
       slides.forEach((s, i) => {
-        if (i === idx) s.className = 'text-slide active';
-        else if (i < idx) s.className = 'text-slide above';
-        else s.className = 'text-slide below';
+        if (i === idx)      s.className = 'text-slide active';
+        else if (i < idx)  s.className = 'text-slide above';
+        else               s.className = 'text-slide below';
       });
-
       progDots.forEach((d, i) => d.classList.toggle('active', i === idx));
       hintDots.forEach((d, i) => d.classList.toggle('active', i === idx));
-
       currentSlide = idx;
     }
 
     /* ── NAVIGATION ── */
     function navigate(dir) {
       if (scrollLocked) return;
-
       scrollLocked = true;
       setTimeout(() => scrollLocked = false, 700);
-
-      if (dir === 'down' && currentSlide < slides.length - 1) {
-        showSlide(currentSlide + 1);
-      }
-
-      if (dir === 'up' && currentSlide > 0) {
-        showSlide(currentSlide - 1);
-      }
+      if (dir === 'down' && currentSlide < slides.length - 1) showSlide(currentSlide + 1);
+      if (dir === 'up'   && currentSlide > 0)                 showSlide(currentSlide - 1);
     }
 
-    /* ── ANIMATION ENTREE ── */
+    /* ── ANIMATION D'ENTRÉE ── */
     function runEntrance() {
       const overlayEl = document.getElementById('overlay');
 
       if (isMobile()) {
         panel.classList.add('visible');
         showSlide(0);
-
-        setTimeout(() => {
-          overlayEl.classList.add('hidden');
-        }, 800);
-
+        setTimeout(() => overlayEl.classList.add('hidden'), 800);
         setTimeout(() => {
           hint.classList.add('show');
           progress.classList.add('show');
         }, 1200);
-
         return;
       }
 
-      // DESKTOP / TABLETTE
+      // Desktop / Tablette
       strip.style.transition = 'left 13s cubic-bezier(0.4, 0, 0.5, 1)';
       strip.style.left = getStripLeft() + 'px';
 
       setTimeout(() => {
         panel.classList.add('visible');
         overlayEl.classList.add('hidden');
-
         showSlide(0);
-
         setTimeout(() => {
           hint.classList.add('show');
           progress.classList.add('show');
         }, 500);
-
       }, 1750);
     }
 
-
-
-    /* ── EVENTS ── */
-    window.addEventListener('wheel', (e) => {
+    /* ── ÉVÉNEMENTS ── */
+    window.addEventListener('wheel', e => {
       e.preventDefault();
       navigate(e.deltaY > 0 ? 'down' : 'up');
     }, { passive: false });
 
     let touchStartY = 0;
-    window.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-    });
-
-    window.addEventListener('touchend', (e) => {
+    window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+    window.addEventListener('touchend', e => {
       const dy = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(dy) > 40) navigate(dy > 0 ? 'down' : 'up');
     });
 
-    window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', e => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') navigate('down');
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') navigate('up');
+      if (e.key === 'ArrowUp'  || e.key === 'ArrowLeft')  navigate('up');
     });
 
-    /* ── RESIZE ── */
     window.addEventListener('resize', () => {
-      strip.style.transition = 'none';
-      strip.style.left = getStripLeft() + 'px';
+      if (!isMobile()) {
+        strip.style.transition = 'none';
+        strip.style.left = getStripLeft() + 'px';
+      }
     });
 
-    /* ── START ── */
-    window.addEventListener('load', () => {
-      setTimeout(runEntrance, 200);
-    });
+    window.addEventListener('load', () => setTimeout(runEntrance, 200));
   </script>
 </body>
-
 </html>
