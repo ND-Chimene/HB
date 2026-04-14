@@ -347,16 +347,16 @@ p, ul { margin-bottom: 20px; }
   ul { padding-left: 20px; }
   p, ul { margin-bottom: 12px; }
 
-  .line { height: 5em; }
+  .line { height: 8em; }
 
   #progress {
     left: 50%;
-    bottom: 16px;
+    bottom: 15%;
     top: auto;
     transform: translateX(-50%);
     flex-direction: row;
     gap: 8px;
   }
 
-  #scroll-hint { right: 24px; bottom: 16px; }
+  #scroll-hint { right: 24px; bottom: 30px; }
 }
