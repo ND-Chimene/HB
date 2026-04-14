@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Pinyon+Script&display=swap");
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,7 +16,8 @@
   --accent: #ac915f;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -77,14 +80,18 @@ html, body {
   transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#text-panel.visible { transform: translateX(0); }
+#text-panel.visible {
+  transform: translateX(0);
+}
 
 /* ── SLIDES DE TEXTE ── */
 .text-slide {
   position: absolute;
   width: 100%;
   padding: 0 7%;
-  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.65s ease;
+  transition:
+    transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.65s ease;
   will-change: transform, opacity;
 }
 
@@ -130,14 +137,23 @@ html, body {
   color: var(--muted);
 }
 
-ul { padding-left: 30px; }
-p, ul { margin-bottom: 20px; }
+ul {
+  padding-left: 30px;
+}
+p,
+ul {
+  margin-bottom: 20px;
+}
 
-.program { margin-bottom: 30px; }
+.program {
+  margin-bottom: 30px;
+}
 
 .no-margin,
 .description p,
-.program-item p { margin-bottom: 0; }
+.program-item p {
+  margin-bottom: 0;
+}
 
 .program-item {
   display: flex;
@@ -164,7 +180,10 @@ p, ul { margin-bottom: 20px; }
   margin-top: -10px;
 }
 
-.description { display: flex; flex-direction: column; }
+.description {
+  display: flex;
+  flex-direction: column;
+}
 
 .pinyon-script {
   font-family: "Pinyon Script", cursive;
@@ -187,7 +206,9 @@ p, ul { margin-bottom: 20px; }
   transition: opacity 0.5s ease;
 }
 
-#scroll-hint.show { opacity: 1; }
+#scroll-hint.show {
+  opacity: 1;
+}
 
 #scroll-hint span {
   font-size: 10px;
@@ -210,7 +231,9 @@ p, ul { margin-bottom: 20px; }
   transition: background 0.3s;
 }
 
-.scroll-dot.active { background: var(--accent); }
+.scroll-dot.active {
+  background: var(--accent);
+}
 
 /* ── PROGRESS DOTS LATÉRAUX ── */
 #progress {
@@ -225,14 +248,18 @@ p, ul { margin-bottom: 20px; }
   transition: opacity 0.4s;
 }
 
-#progress.show { opacity: 1; }
+#progress.show {
+  opacity: 1;
+}
 
 .prog-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: var(--muted);
-  transition: background 0.3s, transform 0.3s;
+  transition:
+    background 0.3s,
+    transform 0.3s;
 }
 
 .prog-dot.active {
@@ -260,8 +287,9 @@ p, ul { margin-bottom: 20px; }
   pointer-events: none;
 }
 
-#overlay.hidden { opacity: 0; }
-
+#overlay.hidden {
+  opacity: 0;
+}
 
 /* ════════════════════════════════════════
    RESPONSIVE
@@ -269,7 +297,6 @@ p, ul { margin-bottom: 20px; }
 
 /* ── TABLETTE : 1001px – 1279px ── */
 @media (max-width: 1279px) and (min-width: 1001px) {
-
   .photo-block {
     width: 33em;
     height: 100vh;
@@ -282,20 +309,33 @@ p, ul { margin-bottom: 20px; }
     padding: 0 5%;
   }
 
-  .slide-body    { font-size: 16px; }
-  .slide-title   { font-size: clamp(22px, 3vw, 32px); }
-  .pinyon-script { font-size: 24px; }
-  .slide-index   { font-size: 14px; }
+  .slide-body {
+    font-size: 16px;
+  }
+  .slide-title {
+    font-size: clamp(22px, 3vw, 32px);
+  }
+  .pinyon-script {
+    font-size: 24px;
+  }
+  .slide-index {
+    font-size: 14px;
+  }
 
-  .line { height: 6em; }
+  .line {
+    height: 6em;
+  }
 
-  #progress    { left: 16px; }
-  #scroll-hint { right: 24px; }
+  #progress {
+    left: 16px;
+  }
+  #scroll-hint {
+    right: 24px;
+  }
 }
 
 /* ── MOBILE : ≤ 1000px ── */
 @media (max-width: 1000px) {
-
   #overlay {
     z-index: 100;
     transition: opacity 7s ease;
@@ -326,37 +366,65 @@ p, ul { margin-bottom: 20px; }
     transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #text-panel.visible { transform: translateY(0); }
+  #text-panel.visible {
+    transform: translateY(0);
+  }
 
   .text-slide {
     position: absolute;
     width: 100%;
     padding: 60px 24px 80px;
-    transition: transform 0.7s ease, opacity 0.7s ease;
+    transition:
+      transform 0.7s ease,
+      opacity 0.7s ease;
   }
 
-  .text-slide.active  { transform: translateY(0);    opacity: 1; }
-  .text-slide.above   { transform: translateY(-120%); opacity: 0; }
-  .text-slide.below   { transform: translateY(120%);  opacity: 0; }
+  .text-slide.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .text-slide.above {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  .text-slide.below {
+    transform: translateY(120%);
+    opacity: 0;
+  }
 
-  .slide-index   { font-size: 13px; margin-bottom: 12px; }
-  .slide-title   { font-size: clamp(20px, 5vw, 28px); margin-bottom: 12px; }
-  .slide-body    { font-size: 15px; line-height: 1.7; }
-  .pinyon-script { font-size: 22px; }
+  .slide-index {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-size: clamp(20px, 5vw, 28px);
+    margin-bottom: 12px;
+  }
+  .slide-body {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .pinyon-script {
+    font-size: 22px;
+  }
 
-  ul { padding-left: 20px; }
-  p, ul { margin-bottom: 12px; }
+  ul {
+    padding-left: 20px;
+  }
+  p,
+  ul {
+    margin-bottom: 12px;
+  }
 
-  .line { height: 8em; }
+  .line {
+    height: 7em;
+  }
 
-  #progress {
+
+  #scroll-hint {
     left: 50%;
     bottom: 15%;
     top: auto;
     transform: translateX(-50%);
-    flex-direction: row;
-    gap: 8px;
   }
-
-  #scroll-hint { right: 24px; bottom: 30px; }
 }
