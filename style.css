@@ -249,6 +249,10 @@ ul {
   }
 }
 
+.emoji {
+  z-index: 2;
+}
+
 /* MOBILE */
 @media (max-width: 1000px) {
   #scene {
@@ -294,7 +298,7 @@ ul {
   }
 
   .line {
-    height: 9em;
+    height: 8em;
   }
 
   #progress {
