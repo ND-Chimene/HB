@@ -1,18 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Pinyon+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Pinyon+Script&display=swap");
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  --bg: #0a1628;
-  --surface: #0f1f3d;
-  --text: #070d15;
-  --muted: #1e262e;
+  --text: #111;
+  --muted: #444;
   --accent: #ac915f;
 }
 
@@ -21,125 +17,143 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  color: var(--text);
   font-family: "Cormorant Garamond", serif;
 }
 
-/* ── SCENE ── */
-#scene {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+/* BG */
+#bg {
+  position: fixed;
+  inset: 0;
+  background: url(background.jpg) center/cover no-repeat;
+  opacity: 0.35;
 }
 
-/* ── PHOTO STRIP ── */
-#strip {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100vw;
-  width: max-content;
+/* OVERLAY */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
   z-index: 50;
+  transition: opacity 7s 6s ease;
+}
+
+#overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SCENE */
+#scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* IMAGE */
+#strip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .photo-block {
-  width: 47em;
-  height: 100vh;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform: translateX(100%);
+}
+
+.photo-block.animate {
+  transition: transform 12s ease-in-out;
+  transform: translateX(-100%);
 }
 
 .photo-block img {
-  width: 100%;
+  width: 40em;
   height: 100%;
   object-fit: cover;
   object-position: right;
+  display: block;
 }
 
-/* ── PANNEAU TEXTE ── */
-#text-panel {
-  position: absolute;
-  right: 5em;
-  margin-right: 5em;
-  top: 0;
-  width: 50%;
+#portrait {
+  width: 100%;
   height: 100%;
+}
+
+#portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#side-img {
+  width: 37em;
+  height: 100%;
+}
+
+/* TEXT */
+#text-panel {
+  width: 58%;
+  height: 100%;
+  position: relative;
+  padding: 70px 70px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 7%;
-  transform: translateX(100%);
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
 }
 
-#text-panel.visible {
-  transform: translateX(0);
-}
-
-/* ── SLIDES DE TEXTE ── */
 .text-slide {
   position: absolute;
-  width: 100%;
-  padding: 0 7%;
-  transition:
-    transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.65s ease;
-  will-change: transform, opacity;
+  width: calc(100% - 140px);
+  opacity: 0;
+  transform: translateY(90px);
+  transition: 0.7s ease;
 }
 
 .text-slide.active {
-  transform: translateY(0);
   opacity: 1;
-  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .text-slide.above {
-  transform: translateY(-70px);
   opacity: 0;
-  pointer-events: none;
+  transform: translateY(-90px);
 }
 
 .text-slide.below {
-  transform: translateY(70px);
   opacity: 0;
-  pointer-events: none;
+  transform: translateY(90px);
 }
 
 .slide-index {
-  font-size: 20px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 20px;
+  letter-spacing: 0.18em;
+  font-size: 14px;
+  margin-bottom: 18px;
 }
 
 .slide-title {
   font-family: "Pinyon Script", cursive;
-  font-size: clamp(28px, 3.5vw, 44px);
+  font-size: 42px;
   font-weight: 400;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  line-height: 1.1;
 }
 
 .slide-body {
-  font-size: 20px;
-  line-height: 1.85;
-  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--muted);
+  margin-bottom: 16px;
 }
 
 ul {
-  padding-left: 30px;
+  padding-left: 22px;
 }
+
 p,
 ul {
   margin-bottom: 20px;
@@ -191,239 +205,95 @@ ul {
   font-weight: 400;
   line-height: 1.2;
   color: var(--text);
+  text-transform: capitalize;
 }
 
-/* ── INDICATEUR DE SCROLL ── */
-#scroll-hint {
-  position: absolute;
-  bottom: 36px;
-  right: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-#scroll-hint.show {
-  opacity: 1;
-}
-
-#scroll-hint span {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.scroll-dots {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.scroll-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--muted);
-  transition: background 0.3s;
-}
-
-.scroll-dot.active {
-  background: var(--accent);
-}
-
-/* ── PROGRESS DOTS LATÉRAUX ── */
+/* DOTS */
 #progress {
   position: absolute;
-  left: 32px;
+  left: 25px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-#progress.show {
-  opacity: 1;
 }
 
 .prog-dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--muted);
-  transition:
-    background 0.3s,
-    transform 0.3s;
+  background: #888;
+  transition: 0.3s;
 }
 
 .prog-dot.active {
   background: var(--accent);
-  transform: scale(1.4);
+  transform: scale(1.5);
 }
 
-/* ── BACKGROUND IMAGE ── */
-#bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  background: url(background.jpg) center / cover no-repeat;
+/* TABLET */
+@media (max-width: 1279px) {
+  #text-panel {
+    width: 60%;
+    padding: 50px;
+  }
+  .text-slide {
+    width: calc(100% - 100px);
+  }
+  .slide-title {
+    font-size: 42px;
+  }
+  .slide-body {
+    font-size: 18px;
+  }
 }
 
-/* ── OVERLAY NOIR AU DÉMARRAGE ── */
-#overlay {
-  position: fixed;
-  inset: 0;
-  background: #ffffff;
-  z-index: 49;
-  opacity: 1;
-  transition: opacity 7s 4s ease;
-  pointer-events: none;
-}
+/* MOBILE */
+@media (max-width: 1000px) {
+  #scene {
+    display: flex;
+    align-items: center;
+  }
 
-#overlay.hidden {
-  opacity: 0;
-}
+  #strip {
+    width: 100%;
+    height: 100%;
+  }
 
-/* ════════════════════════════════════════
-   RESPONSIVE
-   ════════════════════════════════════════ */
+  #side-img {
+    display: none;
+  }
 
-/* ── TABLETTE : 1001px – 1279px ── */
-@media (max-width: 1279px) and (min-width: 1001px) {
-  .photo-block {
-    width: 33em;
-    height: 100vh;
+  .photo-block.animate {
+    transform: translateX(-200%);
   }
 
   #text-panel {
-    right: 0;
-    margin-right: 2em;
-    width: 56%;
-    padding: 0 5%;
+    width: 90%;
+    height: 58%;
+    padding: 30px 24px;
+    margin-left: 1.5em;
+  }
+
+  .text-slide {
+    width: calc(100% - 48px);
+  }
+
+  .slide-title {
+    font-size: 34px;
   }
 
   .slide-body {
     font-size: 16px;
-  }
-  .slide-title {
-    font-size: clamp(22px, 3vw, 32px);
-  }
-  .pinyon-script {
-    font-size: 24px;
-  }
-  .slide-index {
-    font-size: 14px;
+    line-height: 1.6;
   }
 
   .line {
-    height: 6em;
+    height: 9em;
   }
 
   #progress {
-    left: 16px;
-  }
-  #scroll-hint {
-    right: 24px;
-  }
-}
-
-/* ── MOBILE : ≤ 1000px ── */
-@media (max-width: 1000px) {
-  #overlay {
-    z-index: 100;
-    transition: opacity 7s ease;
-  }
-
-  /* Pas d'image sur mobile */
-  #strip {
-    display: none;
-  }
-
-  #scene {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Texte plein écran */
-  #text-panel {
-    position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    transform: translateY(100%);
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  #text-panel.visible {
-    transform: translateY(0);
-  }
-
-  .text-slide {
-    position: absolute;
-    width: 100%;
-    padding: 60px 24px 80px;
-    transition:
-      transform 0.7s ease,
-      opacity 0.7s ease;
-  }
-
-  .text-slide.active {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .text-slide.above {
-    transform: translateY(-120%);
-    opacity: 0;
-  }
-  .text-slide.below {
-    transform: translateY(120%);
-    opacity: 0;
-  }
-
-  .slide-index {
-    font-size: 13px;
-    margin-bottom: 12px;
-  }
-  .slide-title {
-    font-size: clamp(20px, 5vw, 28px);
-    margin-bottom: 12px;
-  }
-  .slide-body {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  .pinyon-script {
-    font-size: 22px;
-  }
-
-  ul {
-    padding-left: 20px;
-  }
-  p,
-  ul {
-    margin-bottom: 12px;
-  }
-
-  .line {
-    height: 7em;
-  }
-
-
-  #scroll-hint {
-    left: 50%;
-    top: 7em;
-    transform: translateX(-50%);
   }
 }
