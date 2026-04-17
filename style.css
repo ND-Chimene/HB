@@ -257,6 +257,10 @@ ul {
   text-align: center;
 }
 
+a {
+  color: var(--text);
+}
+
 /* TABLET */
 @media (max-width: 1279px) {
   #text-panel {
