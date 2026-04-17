@@ -46,15 +46,15 @@ function navigate(dir) {
 }
 
 /* INTRO */
-function intro(){
+function intro() {
     requestAnimationFrame(() => {
         photo.classList.add('animate');
     });
 
-    setTimeout(()=>{
+    setTimeout(() => {
         overlay.classList.add('hidden');
         showSlide(0);
-    },1200);
+    }, 1200);
 }
 
 /* WHEEL */
@@ -94,3 +94,11 @@ window.addEventListener('load', () => {
     setTimeout(intro, 200);
 
 });
+
+window.addEventListener(
+    'touchmove',
+    function (e) {
+        e.preventDefault();
+    },
+    { passive: false }
+);
