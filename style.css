@@ -240,16 +240,21 @@ ul {
 
 #qrcode {
   width: 100%;
-  height: 100px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  margin-top: 2em;
 }
 
 #qrcode img {
-  height: 100%;
+  height: 100px;
   aspect-ratio: 1/1;
   border: 2px solid var(--accent);
   border-radius: 8px;
+}
+
+#qrcode p {
+  text-align: center;
 }
 
 /* TABLET */
@@ -294,7 +299,7 @@ ul {
   }
 
   #text-panel {
-    width: 90%;
+    width: 95%;
     height: 58%;
     padding: 30px 24px;
   }
@@ -326,11 +331,10 @@ ul {
 
   #qrcode {
     justify-content: center;
-    height: 80px;
   }
 
   #qrcode img {
-    height: 100%;
+    height: 80px;
     aspect-ratio: 1/1;
     border: 2px solid var(--accent);
     border-radius: 8px;
